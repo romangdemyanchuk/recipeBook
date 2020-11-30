@@ -1,0 +1,24 @@
+.recipeItemsTitle {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.recipeItemsBlock {
+    height: 200px;
+    border: 1px solid #000;
+    border-radius: 25px;
+    margin: 0 5px;
+    padding: 10px;
+    transition: .7s ease;
+}
+.recipeItemsBlock:hover {
+    background-color: yellow;
+    cursor: pointer;
+}
+.recipeImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.recipeItemsInfo {
+    display: flex;
+}

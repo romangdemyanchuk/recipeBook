@@ -1,0 +1,11 @@
+.container {
+    padding: 0 3%;
+}
+.recipeItemsWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.addRecipeBtn {
+    margin-top: 15px;
+}
+

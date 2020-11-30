@@ -1,0 +1,12 @@
+.ant-row.ant-form-item {
+    display: block;
+}
+.ant-modal-content {
+    /*width: 60%;*/
+}
+.ant-modal-footer {
+    display: none;
+}
+.ant-modal-body {
+    padding: 15px;
+}
