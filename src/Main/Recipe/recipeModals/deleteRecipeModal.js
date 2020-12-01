@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import {Button, Modal, Space, Table, Tag} from "antd";
 import {useDispatch} from "react-redux";
-import {deleteIngredient} from "../../../session/mainReducer";
+import {deleteIngredient, deleteRecipe} from "../../../session/mainReducer";
 const { Column, ColumnGroup } = Table;
 
-export const DeleteModal = ({ modalIsOPen, setModalIsOpen, idOfIngredient, idOfRecipe }) => {
+export const DeleteRecipeModal = ({ modalIsOPen, setModalIsOpen, id }) => {
     const dispatch = useDispatch()
     const closeModal = () => {
         setModalIsOpen(false);
     };
-    const ingredientDelete = () => {
+    const recipeDelete = () => {
         closeModal()
-        deleteIngredient(idOfRecipe, idOfIngredient)(dispatch);
+        deleteRecipe(id)(dispatch);
         closeModal()
     };
 
@@ -25,7 +25,7 @@ export const DeleteModal = ({ modalIsOPen, setModalIsOpen, idOfIngredient, idOfR
             >
                 <div className="deleteModalBtns">
                     <Button type="primary" className="deleteCancelBtn" onClick={closeModal}>Cancel</Button>
-                    <Button type="danger" onClick={ingredientDelete}>Ok</Button>
+                    <Button type="danger" onClick={recipeDelete}>Ok</Button>
                 </div>
 
             </Modal>
@@ -34,4 +34,4 @@ export const DeleteModal = ({ modalIsOPen, setModalIsOpen, idOfIngredient, idOfR
     )
 };
 
-export default DeleteModal;
+export default DeleteRecipeModal;

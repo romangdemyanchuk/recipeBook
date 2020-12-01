@@ -1,38 +1,26 @@
-import React from "react";
-import "./recipeForm.css"
-import {Button, Form, Input, Modal} from 'antd';
-import {newRecipe} from "../../session/mainReducer";
+import React, {useState} from "react";
+import {Button, Form, Input, Modal, Space, Table, Tag} from "antd";
 import {useDispatch} from "react-redux";
-import recipeImg from '../../img/rec1.jpg'
-import recipe1 from "../../img/rec1.jpg";
+import {deleteIngredient, deleteRecipe, editRecipe, newRecipe} from "../../../session/mainReducer";
+import recipe1 from "../../../img/rec1.jpg";
+const { Column, ColumnGroup } = Table;
 
-const RecipeForm = ({ modalIsOpen, setModalIsOpen }) => {
+export const EditRecipeModal = ({ modalIsOPen, setModalIsOpen, recipe }) => {
     const [form] = Form.useForm();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const closeModal = () => {
         setModalIsOpen(false);
     };
-
-    const handleSubmit = ({title, description, shortDescription}) => {
-        form.resetFields();
-        const newItem = {
-            id: Date.now(),
-            title,
-            img: recipe1,
-            shortDescription:shortDescription,
-            description: description,
-            ingredients: []
-        }
-        console.log(newItem)
-        setModalIsOpen(false);
-        newRecipe(newItem)(dispatch)
+    const handleSubmit = (values) => {
+        closeModal()
+        editRecipe(values, recipe.id)(dispatch)
     };
 
     return (
-        <div className="recipeForm">
+        <>
             <Modal
-                title="Create new recipe"
-                visible={modalIsOpen}
+                title="Edit recipe"
+                visible={modalIsOPen}
                 onOk={closeModal}
                 onCancel={closeModal}
             >
@@ -41,6 +29,13 @@ const RecipeForm = ({ modalIsOpen, setModalIsOpen }) => {
                     name="newRecipe"
                     onFinish={(values) => {
                         handleSubmit(values);
+                    }}
+                    initialValues={{
+                        id: recipe.id,
+                        title: recipe.title,
+                        img: recipe1,
+                        shortDescription:recipe.shortDescription,
+                        description: recipe.description
                     }}
                 >
                     <div className="recipeFormItem">
@@ -56,23 +51,23 @@ const RecipeForm = ({ modalIsOpen, setModalIsOpen }) => {
                     </div>
                     <div className="recipeFormItem">
                         <Form.Item
-                            label="Short description"
-                            name="shortDescription"
-                            rules={[{ required: true, message: 'Please input short description of recipe!' }]}
-                        >
-                            <Input
-                                placeholder="recipe short description"
-                            />
-                        </Form.Item>
-                    </div>
-                    <div className="recipeFormItem">
-                        <Form.Item
                             label="Description"
                             name="description"
                             rules={[{ required: true, message: 'Please input description of recipe!' }]}
                         >
                             <Input
                                 placeholder="recipe description"
+                            />
+                        </Form.Item>
+                    </div>
+                    <div className="recipeFormItem">
+                        <Form.Item
+                            label="Short description"
+                            name="shortDescription"
+                            rules={[{ required: true, message: 'Please input description of recipe!' }]}
+                        >
+                            <Input
+                                placeholder="recipe shortDescription"
                             />
                         </Form.Item>
                     </div>
@@ -83,8 +78,9 @@ const RecipeForm = ({ modalIsOpen, setModalIsOpen }) => {
                     </Form.Item>
                 </Form>
             </Modal>
-        </div>
+        </>
+
     )
 };
 
-export default RecipeForm;
+export default EditRecipeModal;

@@ -1,17 +1,19 @@
 import React, {useState} from "react";
 import {Button, Form, Input, Modal, Space, Table, Tag} from "antd";
 import recipe1 from "../../../img/rec1.jpg";
-import {newRecipe} from "../../../session/mainReducer";
+import {addIngredient, newRecipe} from "../../../session/mainReducer";
+import {useDispatch} from "react-redux";
 const { Column, ColumnGroup } = Table;
 
-export const AddItemModal = ({ modalIsOPen, setModalIsOpen}) => {
+export const AddItemModal = ({idOfRecipe, modalIsOPen, setModalIsOpen}) => {
+    const dispatch = useDispatch()
     const [form] = Form.useForm();
     const closeModal = () => {
         setModalIsOpen(false);
     };
 
     const handleSubmit = (value) => {
-        console.log(value)
+        addIngredient(value, idOfRecipe)(dispatch)
     };
 
     return (
@@ -34,6 +36,7 @@ export const AddItemModal = ({ modalIsOPen, setModalIsOpen}) => {
                         <Form.Item
                             label="Title"
                             name="title"
+                            rules={[{ required: true, message: 'Please input title of ingredient!' }]}
                         >
                             <Input
                                 placeholder="ingredients title"
@@ -42,10 +45,12 @@ export const AddItemModal = ({ modalIsOPen, setModalIsOpen}) => {
                     </div>
                     <div className="recipeFormItem">
                         <Form.Item
-                            label="Amount"
-                            name="description"
+                            label="Amount(number)"
+                            name="amount"
+                            rules={[{ required: true, message: 'Please input amount(number) of ingredient!' }]}
                         >
                             <Input
+                                type="number"
                                 placeholder="ingredients amount"
                             />
                         </Form.Item>

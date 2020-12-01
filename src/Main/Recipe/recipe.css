@@ -1,9 +1,11 @@
 .recipeItemsTitle {
-    font-size: 15px;
+    font-size: 12px;
+    text-align: center;
     margin-bottom: 10px;
 }
 .recipeItemsBlock {
-    height: 200px;
+    width: 200px;
+    text-align: center;
     border: 1px solid #000;
     border-radius: 25px;
     margin: 0 5px;
@@ -15,10 +17,18 @@
     cursor: pointer;
 }
 .recipeImg {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
 }
-.recipeItemsInfo {
+.recipeBtns {
+    margin-top: 5px;
     display: flex;
+    justify-content: space-around;
+}
+button.ant-btn {
+    padding: 0 10px;
+}
+.recipeItemsDescription {
+    font-size: 10px;
 }
