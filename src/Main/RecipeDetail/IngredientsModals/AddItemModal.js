@@ -1,9 +1,7 @@
-import React, {useState} from "react";
-import {Button, Form, Input, Modal, Space, Table, Tag} from "antd";
-import recipe1 from "../../../img/rec1.jpg";
-import {addIngredient, newRecipe} from "../../../session/mainReducer";
+import React from "react";
+import {Button, Form, Input, Modal} from "antd";
+import {addIngredient} from "../../../session/mainReducer";
 import {useDispatch} from "react-redux";
-const { Column, ColumnGroup } = Table;
 
 export const AddItemModal = ({idOfRecipe, modalIsOPen, setModalIsOpen}) => {
     const dispatch = useDispatch()
@@ -13,7 +11,9 @@ export const AddItemModal = ({idOfRecipe, modalIsOPen, setModalIsOpen}) => {
     };
 
     const handleSubmit = (value) => {
+        form.resetFields();
         addIngredient(value, idOfRecipe)(dispatch)
+        closeModal()
     };
 
     return (

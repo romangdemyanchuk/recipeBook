@@ -4,7 +4,7 @@ import {
     DELETE_INGREDIENT,
     DELETE_RECIPE,
     EDIT_INGREDIENT,
-    EDIT_RECIPE
+    EDIT_RECIPE, RECIPE_INFO
 } from "./sessionConstants";
 import {
     addIngredientItem,
@@ -12,7 +12,7 @@ import {
     deleteIngredientItem,
     deleteRecipeItem,
     editIngredientItem,
-    editRecipeItem
+    editRecipeItem, getRecipeInfo
 } from './sessionActions'
 import recipe1 from "../img/rec1.jpg";
 
@@ -39,7 +39,7 @@ const initialState = {
             ]
         },
     ],
-    recipe: {}
+    oneRecipe:{}
 };
 
 const MainReducer = (state = initialState, action) => {
@@ -55,7 +55,7 @@ const MainReducer = (state = initialState, action) => {
             stateCopy.recipes[recipeId].ingredients.push({
                 id: Date.now(),
                 title: action.payload.title,
-                amount: action.payload.description
+                amount: action.payload.amount
             });
             return stateCopy;
 
@@ -91,6 +91,12 @@ const MainReducer = (state = initialState, action) => {
                 ...state,
                 recipes: state.recipes.filter(item => item.id !== action.payload)
             }
+        case RECIPE_INFO:
+            console.log(action)
+            let recipeOfId = state.recipes.findIndex((el) => el.id === action.payload)
+            return {
+                oneRecipe: {...state.recipes[recipeOfId]}
+            }
 
         default:
             return state;
@@ -106,8 +112,8 @@ export const deleteIngredient = (idOfRecipe, idOfIngredient) => (dispatch) => {
     dispatch(deleteIngredientItem({idOfRecipe, idOfIngredient}))
 };
 
-export const addIngredient = ({title, description}, id) => (dispatch) => {
-    dispatch(addIngredientItem({title, description, id}))
+export const addIngredient = ({title, amount}, id) => (dispatch) => {
+    dispatch(addIngredientItem({title, amount, id}))
 };
 export const editIngredient = ({title, amount}, idOfRecipe, idOfIngredient) => (dispatch) => {
     dispatch(editIngredientItem({title, amount, idOfRecipe, idOfIngredient}))
@@ -117,5 +123,8 @@ export const editRecipe = ({description,shortDescription, title}, id) => (dispat
 };
 export const deleteRecipe = (id) => (dispatch) => {
     dispatch(deleteRecipeItem(id))
+};
+export const recipeInfo = (id) => (dispatch) => {
+    dispatch(getRecipeInfo(id))
 };
 

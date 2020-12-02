@@ -24,5 +24,11 @@
     margin-right: 10px;
 }
 .newItemBtn {
-    margin-top: 3px;
+    margin-bottom: 4px;
+    padding: 0;
+}
+
+.newIngredientBtn {
+    text-align: right;
+    margin-top: -35px;
 }

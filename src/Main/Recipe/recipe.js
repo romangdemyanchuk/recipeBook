@@ -1,10 +1,7 @@
-import React, {useState} from "react";
+import React, { useState} from "react";
 import "./recipe.css"
-import recipe1 from "../../img/rec1.jpg";
 import {Button, Card} from "antd";
 import RecipeDetail from "../RecipeDetail";
-import EditModal from "../RecipeDetail/IngredientsModals/EditModal";
-import DeleteModal from "../RecipeDetail/IngredientsModals/DeleteModal";
 import DeleteRecipeModal from "./recipeModals/deleteRecipeModal";
 import EditRecipeModal from "./recipeModals/editRecipeModal";
 
@@ -13,6 +10,7 @@ const Recipe = ({recipe}) => {
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
+    console.log(recipe)
     const onCardClick = () => {
         setDetailOfRecipeIsOpen(true)
     }

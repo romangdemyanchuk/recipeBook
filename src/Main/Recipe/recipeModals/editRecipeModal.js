@@ -71,8 +71,11 @@ export const EditRecipeModal = ({ modalIsOPen, setModalIsOpen, recipe }) => {
                             />
                         </Form.Item>
                     </div>
-                    <Form.Item >
-                        <Button type="primary" htmlType="submit">
+                    <Form.Item className="editFormBtns">
+                        <Button type="primary" className="editCancelBtn" onClick={closeModal}>
+                            Cancel
+                        </Button>
+                        <Button type="danger" htmlType="submit">
                             Submit
                         </Button>
                     </Form.Item>

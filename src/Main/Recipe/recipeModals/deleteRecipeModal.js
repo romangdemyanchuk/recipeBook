@@ -18,6 +18,7 @@ export const DeleteRecipeModal = ({ modalIsOPen, setModalIsOpen, id }) => {
     return (
         <>
             <Modal
+                style={{top: '120px'}}
                 title="Are you sure?"
                 visible={modalIsOPen}
                 onOk={closeModal}

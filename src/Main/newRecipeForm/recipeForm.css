@@ -2,11 +2,53 @@
     display: block;
 }
 .ant-modal-content {
-    /*width: 60%;*/
+    width: 55%;
+    margin: 0 auto;
 }
 .ant-modal-footer {
     display: none;
 }
 .ant-modal-body {
-    padding: 15px;
+    padding: 10px;
+    font-size: 10px;
+}
+.ant-form-item {
+    margin-bottom: 4px;
+}
+.ant-form-item-label > label {
+    height: 10px;
+    font-size: 12px;
+}
+.ant-input {
+    padding: 2px 8px;
+}
+.ant-modal-header {
+    padding: 5px 24px;
+}
+.ant-modal-close {
+    top: -12px;
+}
+.ant-form-item-label >label.ant-form-item-required:not
+(.ant-form-item-required-mark-optional)::before {
+    font-size: 10px;
+}
+.ant-modal {
+    top: 25px;
+}
+.ant-table-cell {
+    font-size: 10px;
+}
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td,
+.ant-table tfoot > tr > th,
+.ant-table tfoot > tr > td {
+    padding: 8px;
+}
+.recipeFormBtns,
+.editFormBtns {
+    display: flex;
+    text-align: right;
+}
+.ant-form-item-explain, .ant-form-item-extra {
+    font-size: 10px;
 }

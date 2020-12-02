@@ -76,8 +76,11 @@ const RecipeForm = ({ modalIsOpen, setModalIsOpen }) => {
                             />
                         </Form.Item>
                     </div>
-                    <Form.Item >
-                        <Button type="primary" htmlType="submit">
+                    <Form.Item className="recipeFormBtns">
+                        <Button type="primary" className="addCancelBtn" onClick={closeModal}>
+                            Cancel
+                        </Button>
+                        <Button type="danger" htmlType="submit">
                             Submit
                         </Button>
                     </Form.Item>
