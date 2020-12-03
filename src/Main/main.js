@@ -9,7 +9,6 @@ import Recipe from "./Recipe";
 const Main = () => {
     const recipes = useSelector((state) => state.main.recipes);
     const [newItemModalIsOpen, setNewItemModalIsOpen] = useState(false);
-    console.log('recipes', recipes)
 
     const openModal = () => {
         setNewItemModalIsOpen(true)
@@ -19,17 +18,20 @@ const Main = () => {
         <div className="container">
             <RecipeForm modalIsOpen={newItemModalIsOpen} setModalIsOpen={setNewItemModalIsOpen}/>
             <div className="recipeItemsWrapper">
-                {recipes.map((item) => {
-                    return <Recipe key={item.id} recipe={item}/>
-                })}
+                {recipes.length > 0 ? recipes.map((item) => {
+                        return <Recipe key={item.id} recipe={item}/>
+                    }) : <p>No recipes</p>
+                }
             </div>
-            <Button
-                type="primary"
-                onClick={openModal}
-                className="addRecipeBtn"
-            >
-                Add recipe
-            </Button>
+            <div className="addRecipeBtnWrapper">
+                <Button
+                    type="primary"
+                    onClick={openModal}
+                    className="addRecipeBtn"
+                >
+                    Add recipe
+                </Button>
+            </div>
         </div>
     )
 };

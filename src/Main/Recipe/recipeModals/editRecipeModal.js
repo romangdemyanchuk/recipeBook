@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Button, Form, Input, Modal, Space, Table, Tag} from "antd";
 import {useDispatch} from "react-redux";
 import {deleteIngredient, deleteRecipe, editRecipe, newRecipe} from "../../../session/mainReducer";
-import recipe1 from "../../../img/rec1.jpg";
+import recipe1 from "../../../img/phoneImg.png";
 const { Column, ColumnGroup } = Table;
 
 export const EditRecipeModal = ({ modalIsOPen, setModalIsOpen, recipe }) => {
@@ -12,8 +12,9 @@ export const EditRecipeModal = ({ modalIsOPen, setModalIsOpen, recipe }) => {
         setModalIsOpen(false);
     };
     const handleSubmit = (values) => {
-        closeModal()
+
         editRecipe(values, recipe.id)(dispatch)
+        closeModal()
     };
 
     return (
@@ -33,7 +34,7 @@ export const EditRecipeModal = ({ modalIsOPen, setModalIsOpen, recipe }) => {
                     initialValues={{
                         id: recipe.id,
                         title: recipe.title,
-                        img: recipe1,
+                        imgUrl: recipe.imgUrl,
                         shortDescription:recipe.shortDescription,
                         description: recipe.description
                     }}
@@ -68,6 +69,16 @@ export const EditRecipeModal = ({ modalIsOPen, setModalIsOpen, recipe }) => {
                         >
                             <Input
                                 placeholder="recipe shortDescription"
+                            />
+                        </Form.Item>
+                    </div>
+                    <div className="recipeFormItem">
+                        <Form.Item
+                            label="Image url"
+                            name="imgUrl"
+                        >
+                            <Input
+                                placeholder="recipe image url"
                             />
                         </Form.Item>
                     </div>

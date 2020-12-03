@@ -15,7 +15,7 @@ const RecipeDetail = ({ modalIsOPen, setModalIsOpen, recipe }) => {
     const [editedItem, setEditedItem] = useState({});
     const [idOfItem, setIdOfItem] = useState(null);
 
-    // console.log(123456)
+    // console.log(recipe)
     // useEffect(() => {
     //     recipeInfo(recipe.id)(dispatch)
     // });
@@ -70,7 +70,7 @@ const RecipeDetail = ({ modalIsOPen, setModalIsOpen, recipe }) => {
                 onCancel={closeModal}
             >
                 <div className="recipeWrapper">
-                    <img src={recipe.img} className="recipeImg"/>
+                    <img src={recipe.imgUrl} className="recipeImg"/>
                     <p className="recipeDetailsDescrption">
                         {recipe.description}
                     </p>
@@ -80,28 +80,31 @@ const RecipeDetail = ({ modalIsOPen, setModalIsOpen, recipe }) => {
                     <div className="newIngredientBtn">
                         <Button className="newItemBtn" onClick={addModal}>New</Button>
                     </div>
-                    <Table rowKey={'id'} dataSource={recipe.ingredients}>
-                        <Column title="Ingredient" dataIndex="title" key="title" />
-                        <Column title="Amount" dataIndex="amount" key="amount" />
-                        <Column
-                            title="Edit"
-                            key="action"
-                            render={(text, record) => (
-                                <Space size="middle">
-                                    <a onClick={() => editModal(record.id)}>Edit</a>
-                                </Space>
-                            )}
-                        />
-                        <Column
-                            title="Delete"
-                            key="action"
-                            render={(text, record) => (
-                                <Space size="middle">
-                                    <a onClick={() => deleteModal(record.id)}>Delete</a>
-                                </Space>
-                            )}
-                        />
-                    </Table>
+                    {recipe.ingredients.length > 0 ? <table>
+                            <tbody>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Amount</th>
+                                    <th colSpan={2} style={{textAlign: 'center'}}>Actions</th>
+                                </tr>
+                                {recipe.ingredients.map((ingredient) => {
+                                    return (
+                                        <tr key={ingredient.id}>
+                                            <th>{ingredient.title}</th>
+                                            <th>{ingredient.amount}</th>
+                                            <th>
+                                                <a onClick={() => editModal(ingredient.id)}>Edit</a>
+                                            </th>
+                                            <th>
+                                                <a onClick={() => deleteModal(ingredient.id)}>Delete</a>
+                                            </th>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table> :
+                        <p>No ingredients</p>
+                    }
                 </div>
             </Modal>
         </>

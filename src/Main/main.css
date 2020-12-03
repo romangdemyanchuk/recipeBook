@@ -1,11 +1,29 @@
 .container {
-    padding: 0 3%;
+    padding: 0 5%;
 }
 .recipeItemsWrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 .addRecipeBtn {
     margin-top: 15px;
 }
+.addRecipeBtnWrapper {
+    text-align: center;
+}
 
+@media screen and (max-width: 880px) {
+    .recipeItemsWrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 650px) {
+    .recipeItemsWrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 440px) {
+    .recipeItemsWrapper {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

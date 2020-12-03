@@ -57,7 +57,7 @@ export const AddItemModal = ({idOfRecipe, modalIsOPen, setModalIsOpen}) => {
                     </div>
                     <div className="addModalBtns">
                         <Form.Item >
-                            <Button type="primary" className="addCancelBtn">
+                            <Button type="primary" className="addCancelBtn" onClick={closeModal}>
                                 Cancel
                             </Button>
                         </Form.Item>

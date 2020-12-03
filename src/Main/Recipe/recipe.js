@@ -4,13 +4,13 @@ import {Button, Card} from "antd";
 import RecipeDetail from "../RecipeDetail";
 import DeleteRecipeModal from "./recipeModals/deleteRecipeModal";
 import EditRecipeModal from "./recipeModals/editRecipeModal";
+import bgImg from '../../img/phoneImg.png'
 
 const Recipe = ({recipe}) => {
     const [detailOfRecipeIsOpen, setDetailOfRecipeIsOpen] = useState(false);
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
-    console.log(recipe)
     const onCardClick = () => {
         setDetailOfRecipeIsOpen(true)
     }
@@ -29,10 +29,10 @@ const Recipe = ({recipe}) => {
                 setModalIsOpen={setDetailOfRecipeIsOpen}
                 recipe={recipe}
             />
-            <Card>
+            <Card hoverable>
                 <div className="recipeItemsBlock" onClick={onCardClick}>
                     <h2 className="recipeItemsTitle">{recipe.title}</h2>
-                    <img src={recipe.img} className="recipeImg"/>
+                    <img src={recipe.imgUrl || bgImg} className="recipeImg"/>
                     <p className="recipeItemsDescription">
                         {recipe.shortDescription}
                     </p>

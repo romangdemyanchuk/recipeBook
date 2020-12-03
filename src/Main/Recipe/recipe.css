@@ -4,17 +4,7 @@
     margin-bottom: 10px;
 }
 .recipeItemsBlock {
-    width: 200px;
     text-align: center;
-    border: 1px solid #000;
-    border-radius: 25px;
-    margin: 0 5px;
-    padding: 10px;
-    transition: .8s ease;
-}
-.recipeItemsBlock:hover {
-    background-color: lightgray;
-    cursor: pointer;
 }
 .recipeImg {
     width: 90px;
@@ -22,7 +12,7 @@
     border-radius: 50%;
 }
 .recipeBtns {
-    margin-top: 5px;
+
     display: flex;
     justify-content: space-around;
 }

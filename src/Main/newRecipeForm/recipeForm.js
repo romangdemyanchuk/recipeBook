@@ -1,31 +1,78 @@
-import React from "react";
+import React, {useState} from "react";
 import "./recipeForm.css"
 import {Button, Form, Input, Modal} from 'antd';
 import {newRecipe} from "../../session/mainReducer";
 import {useDispatch} from "react-redux";
-import recipeImg from '../../img/rec1.jpg'
-import recipe1 from "../../img/rec1.jpg";
+import bgImg from "../../img/phoneImg.png";
 
 const RecipeForm = ({ modalIsOpen, setModalIsOpen }) => {
     const [form] = Form.useForm();
+    const [urlIsCorrect, setUrlIsCorrect] = useState(false)
+    const [imgUrll, setimgUrl] = useState(null)
     const dispatch = useDispatch();
     const closeModal = () => {
         setModalIsOpen(false);
     };
 
-    const handleSubmit = ({title, description, shortDescription}) => {
-        form.resetFields();
+    // const checkImage = (imageSrc, good, bad) => {
+    //     var img = new Image();
+    //     img.onload = good;
+    //     img.onerror = bad;
+    //     img.src = imageSrc;
+    // }
+    // const checkImage = new Promise((resolve, reject) => {
+    //         // setTimeout(() => {
+    //         //     resolve('foo');
+    //         // }, 300);
+    //     console.log('pr', imgUrl
+    //         var img = new Image();
+    //         img.onload = function () {
+    //             console.log('resolve')
+    //             resolve('resolve')
+    //         };
+    //     img.onerror = function () {
+    //             console.log('reject')
+    //             reject('reject')
+    //         };
+    //         img.src = imgUrl;
+    //     })
+
+    function loadImg(src) {
+        return new Promise(function(resolve, reject) {
+            // let script = document.createElement('script');
+            var img = new Image();
+            img.src = src;
+
+            img.onload = () => resolve();
+            img.onerror = () => reject(new Error(`Ошибка загрузки скрипта ${src}`));
+
+        });
+    }
+
+
+
+    const handleSubmit = ({title, description, shortDescription, imgUrl}) => {
         const newItem = {
             id: Date.now(),
             title,
-            img: recipe1,
             shortDescription:shortDescription,
             description: description,
             ingredients: []
         }
-        console.log(newItem)
-        setModalIsOpen(false);
-        newRecipe(newItem)(dispatch)
+
+        let pr = loadImg(imgUrl)
+        pr.then(() => {
+            newItem['imgUrl'] = imgUrl
+        }).catch(() => {
+            newItem['imgUrl'] = bgImg
+        }).finally(() => {
+            form.resetFields();
+            setModalIsOpen(false);
+            newRecipe(newItem)(dispatch)
+
+        })
+
+
     };
 
     return (
@@ -73,6 +120,16 @@ const RecipeForm = ({ modalIsOpen, setModalIsOpen }) => {
                         >
                             <Input
                                 placeholder="recipe description"
+                            />
+                        </Form.Item>
+                    </div>
+                    <div className="recipeFormItem">
+                        <Form.Item
+                            label="Image of recipe"
+                            name="imgUrl"
+                        >
+                            <Input
+                                placeholder="recipe image url"
                             />
                         </Form.Item>
                     </div>

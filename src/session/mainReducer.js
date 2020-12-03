@@ -14,7 +14,7 @@ import {
     editIngredientItem,
     editRecipeItem, getRecipeInfo
 } from './sessionActions'
-import recipe1 from "../img/rec1.jpg";
+import bgImg from "../img/phoneImg.png"
 
 
 const initialState = {
@@ -22,7 +22,7 @@ const initialState = {
         {
             id: 1,
             title: 'Awesome Recipe',
-            img: recipe1,
+            imgUrl: bgImg,
             shortDescription: 'Short recipe descr',
             description: 'description of recipe ',
             ingredients: [
@@ -45,6 +45,7 @@ const initialState = {
 const MainReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_RECIPE:
+            console.log('action.payload', action.payload)
             return {
                 ...state, recipes: [...state.recipes, action.payload]
             }
@@ -79,11 +80,13 @@ const MainReducer = (state = initialState, action) => {
         case EDIT_RECIPE:
             let idOfEditedRecipe = state.recipes.findIndex((el) => el.id === action.payload.id)
             let stateCopyy = {...state};
+            console.log('action.payload.imgUrl', action.payload.imgUrl)
             stateCopyy.recipes = [...state.recipes];
             // stateCopyy.recipes[idOfEditedRecipe] = action.payload;
             stateCopyy.recipes[idOfEditedRecipe].title = action.payload.title;
             stateCopyy.recipes[idOfEditedRecipe].description = action.payload.description;
             stateCopyy.recipes[idOfEditedRecipe].shortDescription = action.payload.shortDescription;
+            stateCopyy.recipes[idOfEditedRecipe].imgUrl = action.payload.imgUrl;
             return stateCopyy
 
         case DELETE_RECIPE:
@@ -118,8 +121,8 @@ export const addIngredient = ({title, amount}, id) => (dispatch) => {
 export const editIngredient = ({title, amount}, idOfRecipe, idOfIngredient) => (dispatch) => {
     dispatch(editIngredientItem({title, amount, idOfRecipe, idOfIngredient}))
 };
-export const editRecipe = ({description,shortDescription, title}, id) => (dispatch) => {
-    dispatch(editRecipeItem({description, shortDescription, title, id}))
+export const editRecipe = ({description,shortDescription, title, imgUrl}, id) => (dispatch) => {
+    dispatch(editRecipeItem({description, shortDescription, title , imgUrl, id}))
 };
 export const deleteRecipe = (id) => (dispatch) => {
     dispatch(deleteRecipeItem(id))

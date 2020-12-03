@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Form, Input, Modal} from "antd";
 import {editIngredient} from "../../../session/mainReducer";
 import {useDispatch} from "react-redux";
@@ -14,12 +14,23 @@ export const EditModal = ({idOfRecipe, idOfIngredient, modalIsOPen, setModalIsOp
         amount: amount,
     }
 
-    form.setFieldsValue(formInitialValues)
+    useEffect(() => {
+        form.setFieldsValue(formInitialValues)
+
+        // setText({ note: "2", gender: "demo" });
+    }, []);
+
+    // form.setFieldsValue(formInitialValues)
 
     const closeModal = () => {
-        form.setFieldsValue({title: '', amount: null})
+        // form.setFieldsValue({title: '', amount: null})
         setModalIsOpen(false);
     };
+
+    setTimeout(function () {
+        // form.setFieldsValue({title: '', amount: null})
+
+    },0);
 
     const handleSubmit = (values) => {
         editIngredient(values, idOfRecipe, idOfIngredient)(dispatch)
