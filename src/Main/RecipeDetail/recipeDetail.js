@@ -1,30 +1,21 @@
 import React, {useState} from "react";
 import "./recipeDetail.css"
-import {Button, Modal, Space, Table, Tag} from "antd";
+import {Button, Modal} from "antd";
 import EditModal from "./IngredientsModals/EditModal";
 import DeleteModal from "./IngredientsModals/DeleteModal";
 import AddItemModal from "./IngredientsModals/AddItemModal";
-const { Column} = Table;
 
 const RecipeDetail = ({ modalIsOPen, setModalIsOpen, recipe }) => {
-    // const dispatch = useDispatch()
-    // const{description, ingredients, shortDescription, title} = recipe;
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
     const [addItemModalIsOpen, setAddItemModalIsOpen] = useState(false);
     const [editedItem, setEditedItem] = useState({});
     const [idOfItem, setIdOfItem] = useState(null);
 
-    // console.log(recipe)
-    // useEffect(() => {
-    //     recipeInfo(recipe.id)(dispatch)
-    // });
-    //
-    // let recipe = useSelector((state) => state.main.oneRecipe);
-
     const closeModal = () => {
         setModalIsOpen(false);
     };
+
     const editModal = (id) => {
         recipe.ingredients.forEach((item) => {
             if(item.id === id) {
@@ -33,21 +24,19 @@ const RecipeDetail = ({ modalIsOPen, setModalIsOpen, recipe }) => {
             }
         })
         setEditModalIsOpen(true);
-        // setModalIsOpen(false);
     };
+
     const deleteModal = (id) => {
-        // setIdOfItem(recipe.ingredients.filter(item => item.id === id))
         recipe.ingredients.forEach((item) => {
             if(item.id === id) {
                 setIdOfItem(item.id)
             }
         })
         setDeleteModalIsOpen(true);
-        // setModalIsOpen(false);
     };
+
     const addModal = () => {
         setAddItemModalIsOpen(true);
-        // setModalIsOpen(false);
     };
 
     return (
@@ -70,8 +59,8 @@ const RecipeDetail = ({ modalIsOPen, setModalIsOpen, recipe }) => {
                 onCancel={closeModal}
             >
                 <div className="recipeWrapper">
-                    <img src={recipe.imgUrl} className="recipeImg"/>
-                    <p className="recipeDetailsDescrption">
+                    <img alt='recipe' src={recipe.imgUrl} className="recipeImg"/>
+                    <p className="recipeDetailsDescription">
                         {recipe.description}
                     </p>
                 </div>

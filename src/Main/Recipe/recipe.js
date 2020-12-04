@@ -22,8 +22,14 @@ const Recipe = ({recipe}) => {
     }
     return (
         <>
-        <EditRecipeModal modalIsOPen={editModalIsOpen} setModalIsOpen={setEditModalIsOpen} recipe={recipe}/>
-        <DeleteRecipeModal modalIsOPen={deleteModalIsOpen} setModalIsOpen={setDeleteModalIsOpen} id={recipe.id}/>
+            <EditRecipeModal modalIsOPen={editModalIsOpen}
+                             setModalIsOpen={setEditModalIsOpen}
+                             recipe={recipe}
+            />
+            <DeleteRecipeModal modalIsOPen={deleteModalIsOpen}
+                               setModalIsOpen={setDeleteModalIsOpen}
+                               id={recipe.id}
+            />
             <RecipeDetail
                 modalIsOPen={detailOfRecipeIsOpen}
                 setModalIsOpen={setDetailOfRecipeIsOpen}
@@ -32,7 +38,7 @@ const Recipe = ({recipe}) => {
             <Card hoverable>
                 <div className="recipeItemsBlock" onClick={onCardClick}>
                     <h2 className="recipeItemsTitle">{recipe.title}</h2>
-                    <img src={recipe.imgUrl || bgImg} className="recipeImg"/>
+                    <img alt="recipe" src={recipe.imgUrl || bgImg} className="recipeImg"/>
                     <p className="recipeItemsDescription">
                         {recipe.shortDescription}
                     </p>
@@ -46,5 +52,4 @@ const Recipe = ({recipe}) => {
         </>
     )
 };
-
 export default Recipe;

@@ -1,9 +1,8 @@
 .recipeWrapper {
     display: flex;
-    /*justify-content: space-around;*/
     align-items: center;
 }
-.recipeDetailsDescrption {
+.recipeDetailsDescription {
     margin-left: 10px;
 }
 .recipeIngredientsInfo {
@@ -27,7 +26,6 @@
     margin-bottom: 4px;
     padding: 0;
 }
-
 .newIngredientBtn {
     text-align: right;
     margin-top: -35px;
@@ -37,7 +35,6 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-
 td, th {
     border: 1px solid #dddddd;
     text-align: left;

@@ -44,6 +44,9 @@
 .ant-modal {
     top: 25px;
 }
+.ant-notification-hook-holder, .ant-notification-notice {
+    width: 70%;
+}
 .ant-table-cell {
     font-size: 10px;
 }

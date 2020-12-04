@@ -2,9 +2,9 @@ import React, {useEffect} from "react";
 import {Button, Form, Input, Modal} from "antd";
 import {editIngredient} from "../../../session/mainReducer";
 import {useDispatch} from "react-redux";
+import {infoOfAction} from "../../../utils/notification";
 
 export const EditModal = ({idOfRecipe, idOfIngredient, modalIsOPen, setModalIsOpen, item}) => {
-
     const {title, amount} = item
     const [form] = Form.useForm();
     const dispatch = useDispatch()
@@ -16,24 +16,18 @@ export const EditModal = ({idOfRecipe, idOfIngredient, modalIsOPen, setModalIsOp
 
     useEffect(() => {
         form.setFieldsValue(formInitialValues)
-
-        // setText({ note: "2", gender: "demo" });
     }, []);
 
-    // form.setFieldsValue(formInitialValues)
+    form.setFieldsValue(formInitialValues)
 
     const closeModal = () => {
-        // form.setFieldsValue({title: '', amount: null})
+        form.setFieldsValue({title: '', amount: null})
         setModalIsOpen(false);
     };
 
-    setTimeout(function () {
-        // form.setFieldsValue({title: '', amount: null})
-
-    },0);
-
     const handleSubmit = (values) => {
         editIngredient(values, idOfRecipe, idOfIngredient)(dispatch)
+        infoOfAction('You successfully edit the ingredient');
         closeModal()
     };
 
@@ -46,34 +40,31 @@ export const EditModal = ({idOfRecipe, idOfIngredient, modalIsOPen, setModalIsOp
         >
             <Form
                 form={form}
-                name="newRecipe"
+                name="editIngredient"
                 onFinish={(values) => {
                     handleSubmit(values);
                 }}
                 initialValues={formInitialValues}
             >
-                <div className="recipeFormItem">
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[{ required: true, message: 'Please input title of ingredient!' }]}
-                    >
-                        <Input
-                            placeholder="recipe title"
-                        />
-                    </Form.Item>
-                    <Form.Item
-                        label="Amount(number)"
-                        name="amount"
-                        rules={[{ required: true, message: 'Please input amount(number) of ingredient!' }]}
-                    >
-                        <Input
-                            type="number"
-                            placeholder="recipe amount"
-                        />
-                    </Form.Item>
-
-                </div>
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[{ required: true, message: 'Please input title of ingredient!' }]}
+                >
+                    <Input
+                        placeholder="recipe title"
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Amount(number)"
+                    name="amount"
+                    rules={[{ required: true, message: 'Please input amount(number) of ingredient!' }]}
+                >
+                    <Input
+                        type="number"
+                        placeholder="recipe amount"
+                    />
+                </Form.Item>
                 <div className="editModalBtns">
                     <Form.Item >
                         <Button type="primary" className="editCancelBtn"
